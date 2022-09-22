@@ -52,10 +52,7 @@ For more information, please refer to <https://unlicense.org> */
 #include <fmt/printf.h>
 #include <fmt/xchar.h>
 
-#include <cstdio>
-#include <locale>
-#include <string>
-#include <string_view>
+import std;
 
 namespace fcarouge {
 template <typename, typename, typename, typename, typename> class kalman;
