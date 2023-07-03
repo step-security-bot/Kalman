@@ -1,4 +1,4 @@
-/*  __          _      __  __          _   _
+#[[ __          _      __  __          _   _
 | |/ /    /\   | |    |  \/  |   /\   | \ | |
 | ' /    /  \  | |    | \  / |  /  \  |  \| |
 |  <    / /\ \ | |    | |\/| | / /\ \ | . ` |
@@ -34,35 +34,15 @@ OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
 ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 OTHER DEALINGS IN THE SOFTWARE.
 
-For more information, please refer to <https://unlicense.org> */
+For more information, please refer to <https://unlicense.org> ]]
 
-#include "fcarouge/linalg.hpp"
+# FetchContent_Declare( range-v3 GIT_REPOSITORY
+# "https://github.com/ericniebler/range-v3" FIND_PACKAGE_ARGS NAMES range-v3)
+# FetchContent_MakeAvailable(range-v3)
 
-#include <cassert>
-#include <type_traits>
-
-namespace fcarouge::test {
-namespace {
-//! @test Verifies the initializer lists constructor.
-//!
-//! @todo Rewrite this test as a property-based test.
-[[maybe_unused]] auto test{[] {
-  matrix<int, 4, 3> m{{1, 2, 3}, {4, 5, 6}, {7, 8, 9}, {1, 2, 3}};
-
-  assert(m(0, 0) == 1);
-  assert(m(0, 1) == 2);
-  assert(m(0, 2) == 3);
-  assert(m(1, 0) == 4);
-  assert(m(1, 1) == 5);
-  assert(m(1, 2) == 6);
-  assert(m(2, 0) == 7);
-  assert(m(2, 1) == 8);
-  assert(m(2, 2) == 9);
-  assert(m(3, 0) == 1);
-  assert(m(3, 1) == 2);
-  assert(m(3, 2) == 3);
-
-  return 0;
-}()};
-} // namespace
-} // namespace fcarouge::test
+add_library(kalman_linalg_lazy INTERFACE)
+target_include_directories(kalman_linalg_lazy INTERFACE ".")
+target_link_libraries(
+  kalman_linalg_lazy INTERFACE kalman kalman_generator # range-v3::range-v3
+  # $<$<NOT:$<BOOL:${WIN32}>>:kalman_format>
+)

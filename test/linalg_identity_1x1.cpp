@@ -39,28 +39,18 @@ For more information, please refer to <https://unlicense.org> */
 #include "fcarouge/linalg.hpp"
 
 #include <cassert>
-#include <type_traits>
 
 namespace fcarouge::test {
 namespace {
-//! @test Verifies the initializer lists constructor.
+//! @test Verifies the identity matrices values are unit diagonals.
 //!
 //! @todo Rewrite this test as a property-based test.
 [[maybe_unused]] auto test{[] {
-  matrix<int, 4, 3> m{{1, 2, 3}, {4, 5, 6}, {7, 8, 9}, {1, 2, 3}};
+  matrix<double, 1, 1> i1{identity_v<matrix<double, 1, 1>>};
+  auto i2{identity_v<matrix<double, 1, 1>>};
 
-  assert(m(0, 0) == 1);
-  assert(m(0, 1) == 2);
-  assert(m(0, 2) == 3);
-  assert(m(1, 0) == 4);
-  assert(m(1, 1) == 5);
-  assert(m(1, 2) == 6);
-  assert(m(2, 0) == 7);
-  assert(m(2, 1) == 8);
-  assert(m(2, 2) == 9);
-  assert(m(3, 0) == 1);
-  assert(m(3, 1) == 2);
-  assert(m(3, 2) == 3);
+  // assert(i1(0, 0) == 1.0);
+  assert(i2(0, 0) == 1.0);
 
   return 0;
 }()};

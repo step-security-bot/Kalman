@@ -39,27 +39,32 @@ For more information, please refer to <https://unlicense.org> */
 #include "fcarouge/linalg.hpp"
 
 #include <cassert>
-#include <type_traits>
+
+// #include <print>
 
 namespace fcarouge::test {
 namespace {
-//! @test Verifies the initializer lists constructor.
+//! @test Verifies the identity matrices values are unit diagonals.
 //!
 //! @todo Rewrite this test as a property-based test.
 [[maybe_unused]] auto test{[] {
   matrix<int, 4, 3> m{{1, 2, 3}, {4, 5, 6}, {7, 8, 9}, {1, 2, 3}};
 
+  // std::print("Before transpose: {}", m);
+  matrix<int, 3, 4> t{transpose(m)};
+  // std::print("After transpose: {}", m);
+
   assert(m(0, 0) == 1);
-  assert(m(0, 1) == 2);
-  assert(m(0, 2) == 3);
-  assert(m(1, 0) == 4);
-  assert(m(1, 1) == 5);
-  assert(m(1, 2) == 6);
-  assert(m(2, 0) == 7);
-  assert(m(2, 1) == 8);
-  assert(m(2, 2) == 9);
-  assert(m(3, 0) == 1);
-  assert(m(3, 1) == 2);
+  assert(m(0, 1) == 4);
+  assert(m(0, 2) == 7);
+  assert(m(1, 0) == 1);
+  assert(m(1, 1) == 2);
+  assert(m(1, 2) == 5);
+  assert(m(2, 0) == 8);
+  assert(m(2, 1) == 2);
+  assert(m(2, 2) == 3);
+  assert(m(3, 0) == 6);
+  assert(m(3, 1) == 9);
   assert(m(3, 2) == 3);
 
   return 0;

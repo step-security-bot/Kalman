@@ -39,28 +39,29 @@ For more information, please refer to <https://unlicense.org> */
 #include "fcarouge/linalg.hpp"
 
 #include <cassert>
-#include <type_traits>
 
 namespace fcarouge::test {
 namespace {
-//! @test Verifies the initializer lists constructor.
+//! @test Verifies the assignment operator.
 //!
 //! @todo Rewrite this test as a property-based test.
 [[maybe_unused]] auto test{[] {
-  matrix<int, 4, 3> m{{1, 2, 3}, {4, 5, 6}, {7, 8, 9}, {1, 2, 3}};
+  matrix<double, 4, 2> a{{1.0, 2.0}, {3.0, 4.0}, {5.0, 6.0}, {7.0, 8.0}};
+  matrix<double, 2, 3> b{{2.0, 3.0, 4.0}, {5.0, 6.0, 7.0}};
+  auto r{a * b};
 
-  assert(m(0, 0) == 1);
-  assert(m(0, 1) == 2);
-  assert(m(0, 2) == 3);
-  assert(m(1, 0) == 4);
-  assert(m(1, 1) == 5);
-  assert(m(1, 2) == 6);
-  assert(m(2, 0) == 7);
-  assert(m(2, 1) == 8);
-  assert(m(2, 2) == 9);
-  assert(m(3, 0) == 1);
-  assert(m(3, 1) == 2);
-  assert(m(3, 2) == 3);
+  assert(r(0, 0) == 12.0);
+  assert(r(0, 1) == 15.0);
+  assert(r(0, 2) == 18.0);
+  assert(r(1, 0) == 26.0);
+  assert(r(1, 1) == 33.0);
+  assert(r(1, 2) == 40.0);
+  assert(r(2, 0) == 40.0);
+  assert(r(2, 1) == 51.0);
+  assert(r(2, 2) == 62.0);
+  assert(r(3, 0) == 54.0);
+  assert(r(3, 1) == 69.0);
+  assert(r(3, 2) == 84.0);
 
   return 0;
 }()};
