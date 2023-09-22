@@ -100,3 +100,9 @@ if(NOT CPP_LIB_GENERATOR)
     FILE_SET "kalman_generator_headers"
     DESTINATION "include/fcarouge")
 endif()
+
+add_library(kalman_std)
+target_sources(kalman_std PRIVATE 
+  FILE_SET "kalman_std_module"
+  TYPE "CXX_MODULES"
+  FILES "std.ixx")

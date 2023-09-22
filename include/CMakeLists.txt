@@ -37,7 +37,7 @@ OTHER DEALINGS IN THE SOFTWARE.
 For more information, please refer to <https://unlicense.org> ]]
 
 if(WIN32)
-  set(OPTIONS "/EHsc" "/W4" "/experimental:module" "/std:c++latest")
+  set(OPTIONS "/EHsc" "/W4")
 else()
   set(OPTIONS
       "-fno-check-new"

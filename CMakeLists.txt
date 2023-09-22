@@ -50,6 +50,14 @@ set(CPACK_PACKAGE_DESCRIPTION_FILE "${CMAKE_SOURCE_DIR}/README.md")
 set(CPACK_RESOURCE_FILE_LICENSE "${CMAKE_SOURCE_DIR}/LICENSE.txt")
 set(CPACK_SOURCE_GENERATOR "TBZ2")
 
+set(CMAKE_EXPERIMENTAL_CXX_MODULE_CMAKE_API
+    "aa1f7df0-828a-4fcd-9afc-2dc80491aca7")
+# if(CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
+#   include("cmake/gcc_modules.cmake")
+# endif()
+set(CMAKE_CXX_STANDARD 23)
+# set(CXX_SCAN_FOR_MODULES TRUE)
+
 include(CMakePackageConfigHelpers)
 include(CPack)
 include(CTest)
