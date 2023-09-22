@@ -57,6 +57,10 @@ For more information, please refer to <https://unlicense.org> */
 #include <type_traits>
 #include <utility>
 
+module;
+
+export module fcarouge;
+
 namespace fcarouge {
 //! @brief A generic Kalman filter.
 //!
@@ -160,7 +164,7 @@ namespace fcarouge {
 //! @todo Can we implement Temporal Parallelization of Bayesian Smoothers, Simo
 //! Sarkka, Senior Member, IEEE, Angel F. Garc ıa-Fernandez,
 //! https://arxiv.org/pdf/1905.13002.pdf ?
-template <typename State = double, typename Output = double,
+export template <typename State = double, typename Output = double,
           typename Input = void, typename UpdateTypes = empty_pack,
           typename PredictionTypes = empty_pack>
 class kalman final {

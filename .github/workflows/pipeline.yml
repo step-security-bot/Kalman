@@ -14,10 +14,8 @@ jobs:
       fail-fast: false
       matrix:
         include:
-        - { os: "ubuntu-latest", compiler: "clang++-15", generator: "Unix Makefiles", package: "clang-15"  }
-        - { os: "ubuntu-latest", compiler: "clang++-16", generator: "Unix Makefiles", package: "clang-16"  }
-        - { os: "ubuntu-latest", compiler: "g++-12", generator: "Unix Makefiles", package: "g++-12"  }
-        - { os: "ubuntu-latest", compiler: "g++-13", generator: "Unix Makefiles", package: "g++-13"  }
+        - { os: "ubuntu-latest", compiler: "clang++-16", generator: "Ninja", package: "clang-16"  }
+        - { os: "ubuntu-latest", compiler: "g++-13", generator: "Ninja", package: "g++-13"  } # TODO PATCH?
         - { os: "windows-latest", compiler: "cl", generator: "Ninja", config: "Debug" }
         - { os: "windows-latest", compiler: "cl", generator: "Ninja", config: "Release" }
     name: "${{ matrix.os }} / ${{ matrix.compiler }} / ${{ matrix.generator }} / ${{ matrix.config }}"
@@ -28,9 +26,7 @@ jobs:
     - name: "Tool: Microsoft Windows"
       uses: ilammy/msvc-dev-cmd@cec98b9d092141f74527d0afa6feb2af698cfe89 # v1.12.1
     - name: "Tool: Ubuntu"
-      if: ${{ matrix.package == 'g++-12' ||
-              matrix.package == 'g++-13' ||
-              matrix.package == 'clang-15' }}
+      if: ${{ matrix.package == 'g++-13' }}
       run: |
         sudo add-apt-repository ppa:ubuntu-toolchain-r/test
         sudo apt update

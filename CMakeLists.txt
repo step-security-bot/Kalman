@@ -36,7 +36,7 @@ OTHER DEALINGS IN THE SOFTWARE.
 
 For more information, please refer to <https://unlicense.org> ]]
 
-cmake_minimum_required(VERSION "3.24")
+cmake_minimum_required(VERSION "3.27")
 
 project(
   kalman
@@ -49,6 +49,14 @@ set(CPACK_PACKAGE_CHECKSUM "SHA512")
 set(CPACK_PACKAGE_DESCRIPTION_FILE "${CMAKE_SOURCE_DIR}/README.md")
 set(CPACK_RESOURCE_FILE_LICENSE "${CMAKE_SOURCE_DIR}/LICENSE.txt")
 set(CPACK_SOURCE_GENERATOR "TBZ2")
+
+set(CMAKE_EXPERIMENTAL_CXX_MODULE_CMAKE_API
+    "aa1f7df0-828a-4fcd-9afc-2dc80491aca7")
+if(CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
+  include("cmake/gcc_modules.cmake")
+endif()
+set(CMAKE_CXX_STANDARD 20)
+# set(CXX_SCAN_FOR_MODULES TRUE)
 
 include(CMakePackageConfigHelpers)
 include(CPack)
